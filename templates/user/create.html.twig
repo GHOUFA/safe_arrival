@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{%block pageTitle %} {{ action~" un utilistateur" |trans}}{% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <br>
+    <div class="row">
+        <div class="col-lg-4">
+            <button class="btn btn-brand m-btn m-btn--icon">
+            <span>
+                <i class="la la-save"></i>
+                <span>{{ "Enregistrer"|trans }}</span>
+            </span>
+            </button>
+            <a href="{{ path('user_registration') }}">
+                <button class="btn btn-secondary m-btn m-btn--icon" type="button">
+                <span>
+                    <i class="fa fa-arrow-circle-left"></i>
+                    <span>{{ "Retour à la liste"|trans}}</span>
+                </span>
+                </button>
+            </a>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $(function () {
+                checkRole(); //this calls it on load
+                $("select#user_groups").change(checkRole);
+            });
+
+            function checkRole() {
+                group=$("#user_groups").val();
+                if(group=='1' || group=='3' || group=='1,3'){
+                    $("#user_centre").prop("disabled", true);
+                }else {
+                    $("#user_centre").prop("disabled", false);
+                    $("#user_centre").prop('required',true);
+                }
+            }
+        });
+    </script>
+{% endblock %}

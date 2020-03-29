@@ -1,0 +1,49 @@
+{% set currentRoute = app.request.attributes.get('_route') %}
+{% set trituxmainActive = false %}
+{% set trituxmainsub = false %}
+
+{% if currentRoute == 'tritux_dashbord'%}
+    {% set trituxmainsub = 1 %}
+{% elseif currentRoute == 'config_message_index' or currentRoute == 'config_message_new'%}
+    {% set trituxmainsub = 2 %}
+{% elseif currentRoute == 'user_index'%}
+    {% set trituxmainActive = true %}
+    {% set trituxmainsub = 3 %}
+
+{% endif %}
+<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+    <div class="nano">
+        <div class="nano-content">
+            <div class="logo"><a href="index.html"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Safe Arrival</span></a></div>
+            {#<ul class="{% if trituxmainActive %}visible{% endif %}">#}
+                {#<li{% if trituxmainsub == 1 %} class="active"{% endif %}><a#}
+                            {#href="{{ path('tritux_main_homepage') }}">{{ 'reporting.dashboard'|trans({}) }}</a>#}
+                {#</li>#}
+            {#</ul>#}
+            <ul>
+                <li{% if trituxmainsub == 1 %} class="active"{% endif %}>
+                    <a href="{{ path('tritux_dashbord') }}" ><i class="ti-home"></i> Dashboard </a>
+                </li>
+                <li{% if trituxmainsub == 2 %} class="active"{% endif %}>
+                    <a href="{{ path('config_message_index') }}" ><i class="ti-settings"></i> Configuration Messages </a>
+                </li>
+                <li >
+                    <a href="{{ path('config_message_index') }}"><i class="ti-book"></i> Abonné </a>
+                </li>
+
+                <li{% if trituxmainsub == 3 %} class="active"{% endif %}>
+                    <a><i class="ti-user"></i> Securité <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li><a href="{{ path('user_index') }}" ><i class="ti-user"></i> Utilisateurs </a></li>
+                    </ul>
+                </li>
+                <li><a><i class="ti-user"></i>  Securité  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li><a href="{{ path('user_index') }}" >Utilisateurs</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>

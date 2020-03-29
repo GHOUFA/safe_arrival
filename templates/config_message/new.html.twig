@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/errors.html.twig' %}
+{% block body %}
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-xl-12 col-xxl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Input Style</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form name="message" method="post" action="" class="form-horizontal" role="form" novalidate="novalidate">
+                                    <div class="form-group">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-12">
+                                            {{ form_errors(form) }}
+                                            {{ form_errors(form.language) }}
+                                            {{ form_errors(form.isDefault) }}
+                                            {{ form_errors(form.body) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class='col-sm-6 control-label'>{{ 'message.form.label.language'|trans }} :<span
+                                                    class="requiredLabel">*</span>
+                                        </label>
+                                            {% if(form_errors(form.language)|length) %}
+                                                {{ form_widget(form.language) }}
+                                            {% else %}
+                                                {{ form_widget(form.language) }}
+                                            {% endif %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class='col-sm-6 control-label'>{{ 'message.form.label.isdefault'|trans }} :<span
+                                                    class="requiredLabel">*</span>
+                                        </label>
+
+                                        {% if(form_errors(form.isDefault)|length) %}
+                                            {{ form_widget(form.isDefault) }}
+                                        {% else %}
+                                            {{ form_widget(form.isDefault) }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class='col-sm-6 control-label'>{{ 'message.form.label.body'|trans }} :<span
+                                                    class="requiredLabel">*</span>
+                                        </label>
+
+                                            {% if(form_errors(form.body)|length) %}
+                                                {{ form_widget(form.body) }}
+                                            {% else %}
+                                                {{ form_widget(form.body) }}
+                                            {% endif %}
+                                    </div>
+                                    {{ form_rest(form) }}
+                                    <input type="submit" value="{{ 'listing.registration'|trans() }}"
+                                           class="btn btn-success" id="message_add"/>
+                                    <a href="{{ path('config_message_index') }}" class="btn btn-default" id="message_list">
+                                        {{ 'listing.return'|trans() }}
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

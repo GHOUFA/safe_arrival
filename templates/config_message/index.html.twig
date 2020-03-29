@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Config Message{% endblock %}
+
+{% block body %}
+
+        <div class="content-wrap">
+            <div class="main">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h1>Config Message</h1>
+                        {% include 'flashMessage.html.twig' %}
+                    </div>
+                    <div class="row">
+                        <table class="table table-bordered datatable" id="table-4">
+                            <thead>
+                            <tr>
+                                <th class="replace-inputs">{{ 'message.form.label.id'|trans }}</th>
+                                <th class="replace-inputs">{{ 'message.form.label.language'|trans }}</th>
+                                <th class="replace-inputs">{{ 'message.form.label.isdefault'|trans }}</th>
+                                <th class="replace-inputs">{{ 'message.form.label.body'|trans }}</th>
+                                <th class="replace-inputs disabled"></th>
+                            </tr>
+                            <tr class="sonata-ba-list-field-header">
+                                <th>{{ 'message.form.label.id'|trans }}</th>
+                                <th>{{ 'message.form.label.language'|trans }}</th>
+                                <th>{{ 'message.form.label.isdefault'|trans }}</th>
+                                <th>{{ 'message.form.label.body'|trans }}</th>
+                                <th>{{ 'listing.actions'|trans() }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for entity in config_messages %}
+                                <tr>
+                                    <td class="col-md-4"><a href="{{ path('config_message_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                                    <td class="col-md-4">
+                                        {% if  entity.language == 0 %}
+                                            <span class="badge badge-success">{{'Fr'|trans }}</span>
+                                        {% elseif  entity.language == 1 %}
+                                            <span class="badge badge-info">{{'Ar'|trans }}</span>
+                                        {% else %}
+                                            <span class="badge badge-warning">{{'En'|trans }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="col-md-4">
+                                    {% if  entity.isdefault == 1 %}
+                                        <span class="badge badge-success">{{'OUI'|trans }}</span>
+                                    {% else %}
+                                        <span class="badge badge-warning">{{'NON'|trans }}</span>
+                                    {% endif %}
+                                    </td>
+                                    <td class="col-md-4">{{ entity.body }}</td>
+                                    <td class="col-md-4">
+                                        <a href="{{ path('config_message_show', { 'id': entity.id }) }}"
+                                           class="btn btn-default btn-sm btn-icon icon-left"
+                                           title="{{ 'listing.action_show'|trans() }}" id="message_show">
+                                            <i class="entypo-info"></i>
+                                            {{ 'listing.action_show'|trans() }}
+                                        </a>
+                                            <a href="{{ path('config_message_edit', { 'id': entity.id }) }}"
+                                               class="btn btn-success btn-sm btn-icon icon-left" id="message_edit">
+                                                <i class="entypo-pencil"></i>
+                                                {{ 'listing.action_edit'|trans() }}
+                                            </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <a href="{{ path('config_message_new') }}" class="btn btn-success" id="administrator_contact_add">
+                            <i class="entypo-plus"></i>
+                            {{ 'listing.action_create'|trans() }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            var table = $("#table-4").dataTable({
+                "sPaginationType": "bootstrap",
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "bStateSave": false,
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [4] },
+                    { "bSearchable": false, "aTargets": [4] }
+                ],
+                "oLanguage": {
+                    oAria: {
+                        sSortAscending: ": {{ 'listing.sortasc'|trans({}) }}",
+                        sSortDescending: ": {{ 'listing.sortdes'|trans({}) }}"
+                    },
+                    oPaginate: {sFirst: "{{ 'listing.paginate.first'|trans({}) }}", sLast: "{{ 'listing.paginate.last'|trans({}) }}", sNext: "{{ 'listing.paginate.next'|trans({}) }}", sPrevious: "{{ 'listing.paginate.previous'|trans({}) }}"},
+                    sEmptyTable: "{{ 'listing.emptytable'|trans({}) }}",
+                    sInfo: "{{ 'listing.showing'|trans({}) }} _START_ {{ 'listing.to'|trans({}) }} _END_ {{ 'listing.of'|trans({}) }} _TOTAL_ {{ 'listing.entries'|trans({}) }}",
+                    sInfoEmpty: "{{ 'listing.showing'|trans({}) }} 0 {{ 'listing.to'|trans({}) }} 0 {{ 'listing.of'|trans({}) }} 0 {{ 'listing.entries'|trans({}) }}",
+                    sInfoFiltered: "({{ 'listing.infofiltred.from'|trans({}) }} _MAX_ {{ 'listing.infofiltred.total'|trans({}) }})",
+                    sLengthMenu: "_MENU_ {{ 'listing.lengthmenu'|trans({}) }}",
+                    sLoadingRecords: "{{ 'listing.loadingrecord'|trans({}) }}",
+                    sProcessing: "{{ 'listing.loadingrecord'|trans({}) }}",
+                    sSearch: "{{ 'listing.search'|trans({}) }}:",
+                    sZeroRecords: "{{ 'listing.zerorecord'|trans({}) }}"
+                }
+
+            });
+
+            table.columnFilter({
+                "sPlaceHolder": "head:after"
+            });
+
+            $(".dataTables_wrapper select").select2({
+                minimumResultsForSearch: -1
+            });
+            $(".pagination a").click(function(ev) {
+                replaceCheckboxes();
+            });
+        });
+    </script>
+{% endblock %}

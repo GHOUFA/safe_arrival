@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+
+        <div class="content-wrap">
+            <div class="main">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2>Utilisateurs</h2>
+                        {% include 'flashMessage.html.twig' %}
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-bordered datatable" id="table-4">
+                                        <thead>
+                                        <tr>
+                                            <th class="replace-inputs">{{ 'user.form.label.id'|trans }}</th>
+                                            <th class="replace-inputs">{{ 'user.form.label.username'|trans }}</th>
+                                            <th class="replace-inputs">{{ 'user.form.label.email'|trans }}</th>
+                                            <th class="replace-inputs disabled"></th>
+                                        </tr>
+                                        <tr class="sonata-ba-list-field-header">
+                                            <th>{{ 'user.form.label.id'|trans }}</th>
+                                            <th>{{ 'user.form.label.username'|trans }}</th>
+                                            <th>{{ 'user.form.label.email'|trans }}</th>
+                                            <th>{{ 'listing.actions'|trans() }}</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+
+                                    <a href="{{ path('user_registration') }}" class="btn btn-success" id="administrator_contact_add">
+                                        <i class="entypo-plus"></i>
+                                        {{ 'listing.action_create'|trans() }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+
+            var user_device = $("#table-4").dataTable({
+                "bProcessing": false,
+                "bServerSide": true,
+                "sAjaxSource": "{{ path('user_list_ajax') }}",
+                "fnServerData": function ( sSource, aoData, fnCallback, oSettings ) {
+                    oSettings.jqXHR = $.ajax({
+                        "dataType": 'json',
+                        "type": "GET",
+                        "url": sSource,
+                        "data": aoData,
+                        "success": fnCallback,
+                        "error": function(XmlHttpRequest,textStatus, errorThrown){
+                            var contentType = XmlHttpRequest.getResponseHeader("Content-Type");
+                            if (XmlHttpRequest.status === 200 && contentType.toLowerCase().indexOf("text/html") >= 0) {
+                                window.location.reload();
+                            }
+                        }
+                    } );
+                },
+                "aaSorting": [[ 0, "desc" ]],
+                "sPaginationType": "bootstrap",
+                "bStateSave": false,
+                "aoColumnDefs": [
+                    { "bSortable": false, "aTargets": [ 3 ] },
+                    { "bSearchable": false, "aTargets": [ 3 ] }
+                ],
+                "aoColumns": [
+                    { "sWidth": "10%" },
+                    { "sWidth": "10%","sClass": "center" },
+                    { "sWidth": "10%"},
+                    { "sWidth": "10%" ,"sClass": "center"}
+                ],
+                "oLanguage": {
+                    oAria: {
+                        sSortAscending: ": {{ 'listing.sortasc'|trans({}) }}",
+                        sSortDescending: ": {{ 'listing.sortdes'|trans({}) }}"
+                    },
+                    oPaginate: {sFirst: "{{ 'listing.paginate.first'|trans({}) }}", sLast: "{{ 'listing.paginate.last'|trans({}) }}", sNext: "{{ 'listing.paginate.next'|trans({}) }}", sPrevious: "{{ 'listing.paginate.previous'|trans({}) }}"},
+                    sEmptyTable: "{{ 'listing.emptytable'|trans({}) }}",
+                    sInfo: "{{ 'listing.showing'|trans({}) }} _START_ {{ 'listing.to'|trans({}) }} _END_ {{ 'listing.of'|trans({}) }} _TOTAL_ {{ 'listing.entries'|trans({}) }}",
+                    sInfoEmpty: "{{ 'listing.showing'|trans({}) }} 0 {{ 'listing.to'|trans({}) }} 0 {{ 'listing.of'|trans({}) }} 0 {{ 'listing.entries'|trans({}) }}",
+                    sInfoFiltered: "({{ 'listing.infofiltred.from'|trans({}) }} _MAX_ {{ 'listing.infofiltred.total'|trans({}) }})",
+                    sLengthMenu: "_MENU_ {{ 'listing.lengthmenu'|trans({}) }}",
+                    sLoadingRecords: "{{ 'listing.loadingrecord'|trans({}) }}",
+                    sProcessing: "{{ 'listing.loadingrecord'|trans({}) }}",
+                    sSearch: "{{ 'listing.search'|trans({}) }}:",
+                    sZeroRecords: "{{ 'listing.zerorecord'|trans({}) }}"
+                }
+            });
+            user_device.columnFilter({
+                "sPlaceHolder": "head:after",
+                "aoColumns": [
+                    {},
+                    {},
+                    {}
+
+                ]
+            });
+
+            $('#user input')
+                    .unbind('keyup')
+                    .bind('keyup', function(e){
+                        if (e.keyCode == 13) {
+                            user_device.fnFilter($(this).val(), 0);
+                        }
+                    });
+            $('#fab input')
+                    .unbind('keyup')
+                    .bind('keyup', function(e){
+                        if (e.keyCode == 13) {
+                            user_device.fnFilter($(this).val(), 1);
+                        }
+                    });
+            $('#modele input')
+                    .unbind('keyup')
+                    .bind('keyup', function(e){
+                        if (e.keyCode == 13) {
+                            user_device.fnFilter($(this).val(), 2);
+                        }
+                    });
+
+
+            $('#table-user-device_filter').addClass('hidden');
+            $(".dataTables_wrapper select").select2({
+                minimumResultsForSearch: -1
+            });
+            $(".pagination a").click(function(ev) {
+                replaceCheckboxes();
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrap">
+    <div class="main">
+    <div class="container-fluid">
+    <div class="row">
+        <h1>Config Message</h1>
+        {% include 'flashMessage.html.twig' %}
+    </div>
+       hello candidat
+        <a href="{{ path('fos_user_security_logout') }}">
+        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    </div>
+    </div>
+    </div>
+    {% endblock %}

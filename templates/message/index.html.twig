@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Configuration Message{% endblock %}
+
+{% block body %}
+hello
+
+    <table class="table table-bordered datatable" id="table-4">
+        <thead>
+        <tr>
+            <th class="replace-inputs">{{ 'message.form.label.id'|trans }}</th>
+            <th class="replace-inputs">{{ 'message.form.label.body'|trans }}</th>
+            <th class="replace-inputs">{{ 'message.form.label.isdefault'|trans }}</th>
+            <th class="replace-inputs">{{ 'message.form.label.language'|trans }}</th>
+            <th class="replace-inputs disabled"></th>
+        </tr>
+        <tr class="sonata-ba-list-field-header">
+            <th>{{ 'message.form.label.id'|trans }}</th>
+            <th>{{ 'message.form.label.body'|trans }}</th>
+            <th>{{ 'message.form.label.isdefault'|trans }}</th>
+            <th>{{ 'message.form.label.language'|trans }}</th>
+            <th>{{ 'tritux.label.actions'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                {#<td><a href="{{ path('tritux_message_show', { 'id': entity.id }) }}">{{ entity.code }}</a></td>#}
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.body }}</td>
+                <td>{{ entity.isdefault }}</td>
+                <td>{{ entity.language }}</td>
+                <td>
+                    {#<a href="{{ path('tritux_message_show', { 'id': entity.id }) }}"#}
+                       {#class="btn btn-default btn-sm btn-icon icon-left"#}
+                       {#title="{{ 'action_show'|trans({}, 'TrituxMainBundle') }}" id="message_show">#}
+                        {#<i class="entypo-info"></i>#}
+                        {#{{ 'action_show'|trans({}, 'TrituxMainBundle') }}#}
+                    {#</a>#}
+                    {#{% if is_granted('ROLE_CONFIG_EDIT') %}#}
+                        {#<a href="{{ path('tritux_message_edit', { 'id': entity.id }) }}"#}
+                           {#class="btn btn-success btn-sm btn-icon icon-left" id="message_edit">#}
+                            {#<i class="entypo-pencil"></i>#}
+                            {#{{ 'action_edit'|trans({}, 'TrituxMainBundle') }}#}
+                        {#</a>#}
+                    {#{% endif %}#}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

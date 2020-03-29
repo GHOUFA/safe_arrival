@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ConfigMessage{% endblock %}
+
+{% block body %}
+    <h1>ConfigMessage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ config_message.id }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ config_message.language }}</td>
+            </tr>
+            <tr>
+                <th>IsDefault</th>
+                <td>{{ config_message.isDefault ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Body</th>
+                <td>{{ config_message.body }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('config_message_index') }}">back to list</a>
+
+    <a href="{{ path('config_message_edit', {'id': config_message.id}) }}">edit</a>
+
+    {{ include('config_message/_delete_form.html.twig') }}
+{% endblock %}

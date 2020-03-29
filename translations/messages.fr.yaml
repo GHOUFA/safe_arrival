@@ -1,0 +1,57 @@
+tritux.label.actions: Action
+message:
+    form:
+        label:
+          id: id
+          language: langue
+          isdefault: Par defaut
+          body: contenu
+          Fr: Fr
+          En: En
+          Ar: Ar
+    flash:
+        add: Le Message est ajoutée avec succès
+        update: Le Message est modifié avec succès
+listing:
+    actions: Actions
+    action_show: Afficher
+    action_edit: Modifier
+    action_create: Ajouter
+    return: Retourner à la liste
+    registration: Enregistrer
+    lengthmenu: entrées par page
+    loadingrecord: Chargement...
+    processing: Traitement...
+    search: Recherche
+    zerorecord: Aucun enregistrements correspondants trouvés
+    infofiltred:
+        from: filtrées de
+        total: entrées totale
+    showing: Affichage de
+    to: à
+    of: pour
+    entries: entrées
+    emptytable: Pas de données disponibles dans le tableau
+    paginate:
+        first: Premier
+        last: Dernier
+        next: Suivant
+        previous: Précédent
+    sortasc: activer pour le tri ascendant
+    sortdes: activer pour le tri descendant
+
+config_message:
+    form:
+        validation:
+            empty: Ce champs est obligatoire
+
+
+user:
+    form:
+        label:
+          id: id
+          username: username
+          email: Email
+    flash:
+        add: L'Utilisateur est ajoutée avec succès
+        update: L'Utilisateur est modifié avec succès

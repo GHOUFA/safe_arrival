@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Config Message{% endblock %}
+
+{% block body %}
+        <div class="content-wrap" xmlns="http://www.w3.org/1999/html">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>User/ Ajout</h3>
+                    {% include 'flashMessage.html.twig' %}
+                </div>
+                <div class="row">
+                    {{ form_start(form, {'action': path('user_registration'), 'method': 'POST', 'attr': {'class': 'm-login__form'}}) }}
+                    <div class="form-group m-form__group">
+                        {{ form_row(form.username) }}
+                    </div>
+                    <div class="form-group m-form__group">
+                        {{ form_row(form.email) }}
+                    </div>
+                    <div class="form-group m-form__group">
+                        {{ form_row(form.plainPassword.first) }}
+                    </div>
+                    <div class="form-group m-form__group">
+                        {{ form_row(form.plainPassword.second) }}
+                    </div>
+
+                    <div class="m-login__form-action">
+                        <button type="submit" id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Sign Up</button>
+                        <button id="m_login_signup_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom">Cancel</button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+
+            </div>
+            </div>
+        </div>
+{% endblock %}
