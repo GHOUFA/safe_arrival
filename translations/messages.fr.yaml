@@ -55,3 +55,14 @@ user:
     flash:
         add: L'Utilisateur est ajoutée avec succès
         update: L'Utilisateur est modifié avec succès
+subscriber:
+    form:
+        label:
+          number: Numero
+          isSuspended: Suspondu
+          message: Message
+          createdAt: Date Création
+          preferedNumber: Numero Préferer
+    flash:
+        add: L'Utilisateur est ajoutée avec succès
+        update: L'Utilisateur est modifié avec succès

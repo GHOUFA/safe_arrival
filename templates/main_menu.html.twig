@@ -9,6 +9,8 @@
 {% elseif currentRoute == 'user_index'%}
     {% set trituxmainActive = true %}
     {% set trituxmainsub = 3 %}
+{% elseif currentRoute == 'subscriber_index'%}
+    {% set trituxmainsub = 4 %}
 
 {% endif %}
 <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
@@ -27,19 +29,16 @@
                 <li{% if trituxmainsub == 2 %} class="active"{% endif %}>
                     <a href="{{ path('config_message_index') }}" ><i class="ti-settings"></i> Configuration Messages </a>
                 </li>
-                <li >
-                    <a href="{{ path('config_message_index') }}"><i class="ti-book"></i> Abonné </a>
+                <li {% if trituxmainsub == 4 %} class="active"{% endif %}>
+                    <a href="{{ path('subscriber_index') }}"><i class="ti-book"></i> Abonné </a>
                 </li>
 
-                <li{% if trituxmainsub == 3 %} class="active"{% endif %}>
-                    <a><i class="ti-user"></i> Securité <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                <li {% if trituxmainsub == 3 %} class="active open"{% endif %} ><a class="sidebar-sub-toggle"><i class="ti-home"></i> Securité <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li><a href="{{ path('user_index') }}" ><i class="ti-user"></i> Utilisateurs </a></li>
-                    </ul>
-                </li>
-                <li><a><i class="ti-user"></i>  Securité  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                    <ul>
-                        <li><a href="{{ path('user_index') }}" >Utilisateurs</a></li>
+                        <li><a href="{{ path('user_index') }}">Utilisateur</a></li>
+
+
+
                     </ul>
                 </li>
 

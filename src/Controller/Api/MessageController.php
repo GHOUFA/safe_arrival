@@ -1,14 +1,9 @@
 <?php
 
-namespace App\Controller\Api\Configuration;
+namespace App\Controller\Api;
 
 use App\Entity\ConfigMessage;
-use App\Form\ConfigMessageType;
-use App\Repository\ConfigMessageRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,9 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\Validator\Exception\GroupDefinitionException;
-use Symfony\Component\Yaml\Yaml;
-use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\FOSRestController;
 
 

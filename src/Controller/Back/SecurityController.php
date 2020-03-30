@@ -45,11 +45,9 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
-    public function index(UserRepository $user): Response
+    public function index(): Response
     {
-        return $this->render('security/index.html.twig', [
-            'users' => $user->findAll(),
-        ]);
+        return $this->render('security/index.html.twig');
     }
 
     /**

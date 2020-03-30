@@ -32,6 +32,11 @@ class ConfigMessage
      */
     private $body;
 
+    public function __toString()
+    {
+        return ($this->getBody()) ? (string)$this->getBody() : 'ConfigMessage';
+    }
+
     public function getId(): ?int
     {
         return $this->id;

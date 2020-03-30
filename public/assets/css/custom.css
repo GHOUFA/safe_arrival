@@ -1,0 +1,105 @@
+#campagne-edit-modal.modal-dialog {   padding-bottom: 30%;   padding-top: 30%; }
+#campagne-add-modal.modal-dialog {   padding-bottom: 30%;   padding-top: 30%; }
+#strongpwdverif,
+#strongpwd{
+    float: left;
+    position: relative;
+    right: -31%;
+    top: -32px;
+}
+/*
+input#brand_plages_0_rangefrom{
+    float: left;
+    position: relative;
+    margin-right: 50px;
+    display: none
+}*/
+#brand_plages_0 .form-group,
+#brand_plages_1 .form-group,
+#brand_plages_2 .form-group,
+#brand_plages_3 .form-group,
+#brand_plages_4 .form-group,
+#brand_plages_5 .form-group,
+#brand_plages_6 .form-group,
+#brand_plages_7 .form-group,
+#brand_plages_8 .form-group,
+#brand_plages_9 .form-group
+{
+    float: left;
+    position: relative;
+    margin-right: 50px;
+}
+.center{
+    text-align: center;
+
+}
+.validpwd {
+    color: green;
+    font-size: 12px;
+    margin-left: 260px;
+}
+
+.notvalidpwd {
+    color: red;
+    font-size: 12px;
+    margin-left: 260px;
+}
+
+.erreur-type ul {
+    color: red;
+    font-size: 12px;
+    margin-left: 260px;
+}
+
+.testSMS {
+    float: left;
+    margin-top: 15px;
+}
+.notifSMS {
+    float: left;
+    margin-top: 6px;
+}
+
+.typegroup {
+    float: left;
+    padding: 3px 0px 5px 0px;
+    margin: 1px -14px 0px 16px;
+    text-align: right;
+}
+/*
+#strongpwd button {
+    margin: -50px 67px 0px 116px;
+}*/
+
+#tritux_security_user_otp, #fos_user_registration_form_otp {
+    margin-left: -170px;
+}
+
+.requiredLabel {
+    color: red;
+}
+
+.orangePanel {
+    background-color: orange;
+}
+
+.orangeLabel {
+    background-color: orange;
+}
+
+.errorBorder {
+    border-color: #cc2424;
+}
+
+ul.icheck-list li {
+    display: inline;
+    padding-right: 6px;
+}
+.thumbnail .img-cin{
+    height: 270px;
+    width: auto;
+}
+.thumbnail .img-passeport{
+    height: 320px;
+    width: auto;
+}

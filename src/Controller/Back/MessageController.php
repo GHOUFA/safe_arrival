@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back\Configuration;
+namespace App\Controller\Back;
 
 use App\Entity\ConfigMessage;
 use App\Form\ConfigMessageType;
